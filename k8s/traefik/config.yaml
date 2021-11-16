@@ -1,0 +1,8 @@
+# helm install --namespace=demo traefik traefik/traefik -f config.yaml
+ports:
+  traefik:
+    expose: true
+  web:
+    nodePort: 80
+  websecure:
+    nodePort: 443
