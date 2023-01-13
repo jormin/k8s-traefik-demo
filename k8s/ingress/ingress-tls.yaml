@@ -1,29 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-ingress
+  name: nginx-ingress-tls
   namespace: demo
   annotations:
     kubernetes.io/ingress.class: "nginx"
 spec:
+  tls:
+    - hosts:
+        - music.demo.lerzen.com
+      secretName: music-lerzen
   rules:
-    - host: music.demo.wcxst.com
+    - host: music.demo.lerzen.com
       http:
         paths:
           - path: /
-            pathType: Exact
+            pathType: Prefix
             backend:
               service:
                 name: music
-                port:
-                  number: 80
-    - host: video.demo.wcxst.com
-      http:
-        paths:
-          - path: /
-            pathType: Exact
-            backend:
-              service:
-                name: video
                 port:
                   number: 80
